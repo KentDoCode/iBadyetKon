@@ -1,0 +1,96 @@
+.create-account-message {
+  transform: translateY(-307%);
+  font-size: 24px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.first-name-container,
+.last-name-container,
+.confirm-password-input {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  color: darkgray;
+}
+
+.name-inputs {
+  display: flex;
+  gap: 5px;
+}
+
+#first-name,
+#last-name,
+#confirm-password {
+  height: 44px;
+  min-width: 10%;
+  border-radius: 8px;
+  padding: 10px;
+  outline-color: royalblue;
+  background-color: #f2f2f2;
+  border: none;
+}
+
+#first-name:user-invalid,
+#last-name:user-invalid,
+#confirm-password:user-invalid {
+  outline-color: red;
+}
+
+#first-name:user-valid,
+#last-name:user-valid,
+#confirm-password:user-valid {
+  outline-color: rgb(85, 212, 85);
+}
+
+.inputs-signup {
+  gap: 8px;
+}
+
+.sign-up-card {
+  max-width: 500px;
+  max-height: auto;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 40px 0 40px;
+  margin: 0.5% 13%;
+  border-radius: 35px;
+  overflow: hidden;
+}
+
+body {
+  overflow: auto;
+}
+
+@media (max-width: 786px) {
+  .create-account-message {
+    transform: translateY(-150%);
+  }
+
+  .name-inputs {
+    flex-direction: column;
+  }
+}
+
+.password-input svg {
+  width: 25px;
+  position: absolute;
+  right: 0;
+  transform: translate(-82%, 130%);
+  color: black;
+  cursor: pointer;
+}
+
+.confirm-password-input svg {
+  width: 25px;
+  position: absolute;
+  right: 0;
+  transform: translate(-82%, 110%);
+  color: black;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 500;
+}

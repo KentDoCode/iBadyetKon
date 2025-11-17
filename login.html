@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log in | iBadyetKon</title>
+    <link rel="icon" href="assets/images/logos/logo-only.svg" />
+    <link rel="stylesheet" href="assets/css/login.css" />
+  </head>
+  <body>
+    <img
+      src="assets/images/guy-holding-money.png"
+      alt="A guys holding a money"
+      class="bg-image"
+    />
+    <main class="main">
+      <div class="overlay"></div>
+      <div class="left">
+        <div class="text">
+          <img
+            src="assets/images/logos/logo-whiteboth.svg"
+            alt=""
+            class="logo"
+          />
+          <div class="tagline">
+            <p>Simplify your spending.</p>
+            <p>Smarter budgeting starts here.</p>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="login-card">
+          <img
+            src="assets/images/logos/logo-name-horizontal.svg"
+            alt="The logo of iBadyetKon"
+            class="card-logo"
+          />
+          <p class="welcome-message">Welcome back to iBadyetKon</p>
+          <form class="login-forms" action="includes/login.php" method="POST">
+            <div class="inputs">
+              <div class="email-input">
+                <label for="email" class="email">Email/ Username</label>
+                <input id="email" type="email" name="email" required />
+              </div>
+              <div class="password-input">
+                <label for="passoword" class="password">Password</label>
+                <input
+                  id="password"
+                  type="password"
+                  name="password"
+                  required
+                  class="password-input"
+                  minlength="4"
+                  autocomplete="new-password"
+                />
+              </div>
+            </div>
+
+            <div class="button-container">
+              <button class="login-button" type="submit">Log in</button>
+              <p class="make-account">
+                Don't have an account?
+                <a href="signup.html"> Register here </a>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+.link-item:first-child > #dashboard-link {
+  color: black;
+}
+
+.link-item:nth-child(2) > #expenses-link {
+  color: #1a7deb;
+}

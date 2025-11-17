@@ -1,0 +1,233 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.left {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1;
+}
+
+.bg-image {
+  position: fixed;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  transform: translate(-25.2%);
+  z-index: 0;
+}
+
+.text {
+  z-index: 1;
+}
+
+.overlay {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
+  background-image: linear-gradient(to right, #3b82f635, #60a5fa 56%);
+}
+
+.text > .logo {
+  height: 267px;
+  width: 287px;
+  transform: translate(26%, -24%);
+  position: fixed;
+}
+
+.text > .tagline {
+  position: fixed;
+  transform: translate(18%, 77%);
+  font-size: 34px;
+  color: white;
+  height: 100vh;
+}
+
+.right {
+  z-index: 5;           
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.right > .login-card {
+  max-width: 500px;
+  height: auto;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  margin: 1% 13%;
+  border-radius: 35px;
+}
+
+.card-logo {
+  width: 180px;
+  position: relative;
+  transform: translateY(-45%);
+}
+
+.welcome-message {
+  transform: translateY(-90%);
+  font-size: 40px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.login-forms {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.email-input,
+.password-input {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 15px;
+  color: darkgray;
+}
+
+.login-forms #email,
+#password {
+  height: 44px;
+  min-width: 300px;
+  border-radius: 8px;
+  padding: 10px;
+  outline-color: royalblue;
+  background-color: #f2f2f2;
+  border: none;
+  color: black;
+}
+
+.login-forms #email:user-invalid,
+#password:user-invalid {
+  outline-color: red;
+}
+
+.login-forms #email:user-valid,
+#password:user-valid {
+  outline-color: rgb(85, 212, 85);
+}
+
+.login-forms {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  transform: translateY(-55px);
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.button-container > .make-account {
+  font-size: 14px;
+  text-align: center;
+}
+
+.login-button {
+  height: 50px;
+  border-radius: 50px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 8px 0, rgba(0, 0, 0, 0.25) 0 6px 12px 0;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.button-container a {
+  text-decoration: none;
+  color: #3b82f6;
+}
+
+.button-container a:hover {
+  cursor: pointer;
+}
+
+.button-container a:visited {
+  color: blue;
+}
+
+.login-button {
+  border: none;
+  background-color: royalblue;
+  text-transform: uppercase;
+  font-size: 20px;
+  color: white;
+  transition: background-color 0.5s;
+}
+
+.login-button:hover {
+  background-color: blue;
+  cursor: pointer;
+}
+
+.login-button:active {
+  background-color: rgb(0, 0, 142);
+}
+
+@media (max-width: 1024px) {
+  .text > .logo {
+    height: 185px;
+    width: 287px;
+    transform: none;
+    position: relative;
+  }
+
+  .text > .tagline {
+    position: relative;
+    transform: none;
+    font-size: 23px;
+    text-align: center;
+    color: white;
+    height: 10vh;
+  }
+
+  .right {
+    justify-content: center;
+  }
+
+  .welcome-message {
+    font-size: 30px;
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .left {
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

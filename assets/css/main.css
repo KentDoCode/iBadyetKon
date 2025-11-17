@@ -1,0 +1,208 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
+
+.page-name > h1 {
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.main {
+  padding: 30px 15% 30px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.page-name {
+  display: flex;
+  justify-content: space-between;
+}
+
+.page-name button {
+  border-radius: 25px;
+  min-width: 250px;
+  min-height: 50px;
+  border: none;
+  background-color: royalblue;
+  color: white;
+  font-size: 18px;
+  transition: background-color 0.3s;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 8px 0, rgba(0, 0, 0, 0.25) 0 6px 12px 0;
+}
+
+.page-name button:hover {
+  background-color: blue;
+  cursor: pointer;
+}
+
+.page-name button:active {
+  background-color: rgb(0, 0, 142);
+}
+
+.welcome-message h2 {
+  font-weight: 500;
+  font-size: 28px;
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr 1fr;
+  grid-template-areas:
+    "budget expenses remaining"
+    "recent recent recent";
+  gap: 26.45px;
+}
+
+.summary p {
+  grid-area: summary;
+  font-size: 16px;
+}
+
+.summary-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.total-budget {
+  grid-area: budget;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 8px 0;
+  padding: 10px;
+  border-radius: 14px;
+  min-height: 187px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#total-budget,
+#total-expenses,
+#remaining {
+  font-size: 40px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: bold;
+}
+
+.total-expenses {
+  grid-area: expenses;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 8px 0;
+  padding: 10px;
+  border-radius: 14px;
+  min-height: 187px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.remaining {
+  grid-area: remaining;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 8px 0;
+  padding: 10px;
+  border-radius: 14px;
+  min-height: 187px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.recent-transactions {
+  grid-area: recent;
+  background-color: white;
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.recent-transactions > p {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.transaction-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 6px;
+}
+
+.transaction-table thead tr {
+  background-color: #f1f4f9;
+  color: black;
+  text-align: left;
+  border-radius: 14px;
+}
+
+.transaction-table th {
+  padding: 14px 16px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.transaction-table tbody tr {
+  transition: all 0.2s ease;
+}
+
+.transaction-table tbody tr:hover {
+  background-color: #f1f5f9;
+  transform: scale(1.01);
+}
+
+.transaction-table td {
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  color: #374151;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.transaction-table td:last-child {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.transaction-table button {
+  border: none;
+  cursor: pointer;
+  background: #e5e7eb;
+  color: #111827;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.transaction-table button:hover {
+  background-color: royalblue;
+  color: white;
+}
+
+.transaction-table button.delete:hover {
+  background-color: #dc2626;
+}
+
+.transaction-table svg {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+  .transaction-table th,
+  .transaction-table td {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+}
+
+.footer {
+  font-size: 14px;
+  text-align: center;
+  color: grey;
+}

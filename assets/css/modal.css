@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+.overlay-modal {
+  position: fixed;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.19);
+  z-index: 1000;
+  inset: 0;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-expenses-modal {
+  min-width: 550px;
+  position: fixed;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 8px 0;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.name-close {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+.name-close svg {
+  max-width: 32px;
+}
+
+.name-close svg:hover {
+  cursor: pointer;
+}
+
+.name-close p {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.expenses-inputs {
+  display: flex;
+  flex-direction: column;
+  padding-top: 15px;
+  gap: 12px;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.category-input,
+.description-input,
+.date-input,
+.amount-input {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputs input {
+  height: 44px;
+  min-width: 300px;
+  border-radius: 8px;
+  padding: 10px;
+  outline-color: royalblue;
+  background-color: #f7f8fa;
+  border: none;
+  font-family: "poppins", sans-serif;
+}
+
+.inputs::placeholder,
+#date::placeholder {
+  color: #bac0cc;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wrapper p,
+.amount-input p {
+  color: #bac0cc;
+  font-size: 12px;
+}
+
+.date-amount-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 11px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.buttons button {
+  padding: 16.5px 28px;
+  border-radius: 8px;
+  border: none;
+  font-size: 18px;
+}
+
+.buttons #cancel {
+  background-color: white;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.buttons #cancel:hover, .buttons #cancel-edit:hover , .buttons #cancel-edit-budget:hover {
+  background-color: #f7f8fa;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 8px 0;
+}
+
+.buttons #save {
+  background-color: #3b82f6;
+  color: white;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.buttons #save:hover {
+  background-color: blue;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 8px 0;
+}
+
+
+.edit-expenses-modal {
+  position: fixed;
+  background-color: white;
+  padding: 16px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 8px 0;
+  border-radius: 8px;
+  z-index: 1000;
+  
+}
+
+#overlay-modal-edit {
+  position: fixed;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.19);
+  z-index: 1000;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
