@@ -39,6 +39,17 @@ function editExpenses() {
   document.body.style.overflow = "hidden";
 }
 
+function openEditModal(id, category, description, date, amount) {
+  
+  document.getElementById('category').value = category;
+  document.getElementById('description').value = description;
+  document.getElementById('date').value = date;
+  document.getElementById('amount').value = amount;
+  
+  editExpenses();
+}
+
+
 // Closing Edit expenses with close icon
 function closeEditExpenses() {
   const editExpensesModal = document.getElementById("overlay-modal-edit");
