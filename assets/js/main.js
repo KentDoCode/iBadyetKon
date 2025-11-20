@@ -86,7 +86,7 @@ function addBudget() {
 
 // CLosing add budget Modal
 function closeAddBudget() {
-  const addBudgetModal = document.getElementById("overlay-modal");
+  const addBudgetModal = document.getElemgitentById("overlay-modal");
 
   if (!addBudgetModal) return;
 
