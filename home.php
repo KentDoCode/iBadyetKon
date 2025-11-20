@@ -161,7 +161,7 @@
                 
                 <?php
                   
-                  require '../iBadyetKon/includes/db_connect.php';
+                  include '../iBadyetKon/includes/db_connect.php';
                         
                   $sql = "SELECT * FROM expenses";
                   $result = $conn->query($sql);
@@ -170,23 +170,29 @@
                     die ("Invalid query: " . $conn->error);
                   }
 
-                  while ($row = $result->fetch_assoc()) {
-                    echo "
-                    <tr>
+
+                  
+                  while ($row = $result->fetch_assoc()) { 
+                    $exp_id = json_encode($row['expense_id']);
+                    $cat = json_encode($row['category']);
+                    $desc = json_encode($row['description']);
+                    $date = json_encode($row['date']);
+                    $amount = json_encode($row['amount']);
+                    echo "<tr>
                       <td>$row[expense_id]</td>
                       <td>$row[date]</td>
                       <td>$row[category] </td>
                       <td>$row[description]</td>
                       <td>$row[amount]</td>
                       <td>
-                        <button
+                        <button 
                           class='edit'
                           id='edit-button'
-                          onclick='openEditModal({$row['expense_id']}, {$row['category']}, {$row['description']}, {$row['date']}, {$row['amount']}'  
-                        >
+                          onclick=\"openEditModal('{$row['expense_id']}', '{$row['category']}', '{$row['description']}', '{$row['date']}', '{$row['amount']}')\"   
+                        > 
                           Edit
                         </button>
-                        <button class='delete'>
+                        <button class='delete' onclick=\"deleteExpense({$row['expense_id']}, '{$row['amount']}', '{$row['category']}')\">
                           <svg
                             xmlns='http://www.w3.org/2000/svg'
                             fill='none'
@@ -203,8 +209,7 @@
                           </svg>
                         </button>
                       </td>
-                    </tr>
-                    ";
+                    </tr>";
                   } 
                 ?>
                 
@@ -250,6 +255,7 @@
                   id="category"
                   placeholder="Write your expense category here"
                   name="category"
+                  required
                 />
               </div>
 
@@ -260,6 +266,7 @@
                   id="description-name"
                   name="description-name"
                   placeholder="Enter your description/ name here"
+                  required
                 />
               </div>
 
@@ -267,7 +274,7 @@
                 <div class="date-amount-wrapper">
                   <div class="date-input">
                     <label for="date">Date</label>
-                    <input type="date" name="date" id="date" />
+                    <input type="date" name="date" id="date" required />
                   </div>
 
                   <div class="amount-input">
@@ -277,6 +284,7 @@
                       name="amount"
                       id="amount"
                       placeholder="Enter amount here"
+                      required
                     />
                   </div>
                 </div>
@@ -315,37 +323,45 @@
             </svg>
           </div>
           <hr />
+
+          
           <form
-            action="includes/add_expenses.php"
+            action="includes/edit_expenses.php"
             class="expenses-inputs"
             method="POST"
           >
+          
             <div class="inputs">
+              
               <div class="category-input">
-                <label for="category">Category</label>
+                <input type="hidden" id="edit-expense-id" name="expense_id">
+                <label for="edit-category">Category</label>
                 <input
                   type="text"
-                  id="category"
+                  id="edit-category"
                   placeholder="Write your expense category here"
                   name="category"
+                  required
+                  
                 />
               </div>
 
               <div class="description-input">
-                <label for="description-name">Description/ Name</label>
+                <label for="edit-description-name">Description/ Name</label>
                 <input
                   type="text"
-                  id="description-name"
+                  id="edit-description-name"
                   name="description-name"
                   placeholder="Enter your description/ name here"
+                  required
                 />
               </div>
 
               <div class="wrapper">
                 <div class="date-amount-wrapper">
                   <div class="date-input">
-                    <label for="date">Date</label>
-                    <input type="date" name="date" id="date" />
+                    <label for="edit-date">Date</label>
+                    <input type="date" name="date" id="edit-date" required/>
                   </div>
 
                   <div class="amount-input">
@@ -353,8 +369,9 @@
                     <input
                       type="number"
                       name="amount"
-                      id="amount"
+                      id="edit-amount"
                       placeholder="Enter amount here"
+                      required
                     />
                   </div>
                 </div>

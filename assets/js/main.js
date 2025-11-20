@@ -40,11 +40,13 @@ function editExpenses() {
 }
 
 function openEditModal(id, category, description, date, amount) {
+
   
-  document.getElementById('category').value = category;
-  document.getElementById('description').value = description;
-  document.getElementById('date').value = date;
-  document.getElementById('amount').value = amount;
+  document.getElementById("edit-expense-id").value = id;
+  document.getElementById("edit-category").value = category;
+  document.getElementById("edit-description-name").value = description;
+  document.getElementById("edit-date").value = date;
+  document.getElementById("edit-amount").value = amount;
   
   editExpenses();
 }
@@ -129,4 +131,14 @@ function cancelEditBudget() {
 
   editBudgetModal.style.display = 'none';
   document.body.style.overflow = 'auto';
+}
+
+// To delete expenses
+function deleteExpense(id, amount, category) {
+
+  if (!confirm("Are you sure you want to delete this expense?")) {
+    return;
+  }
+
+  window.location.href= `includes/delete_expenses.php?expense_id=${id}&amount=${amount}&category=${category}`;
 }

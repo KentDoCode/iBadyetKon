@@ -33,7 +33,7 @@
       <div class="links">
         <ul class="link-items">
           <li class="link-item">
-            <a href="home.html" id="dashboard-link">
+            <a href="home.php" id="dashboard-link">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -119,7 +119,9 @@
     <main class="main">
       <section class="page-name">
         <h1>Expenses</h1>
-        <button id="add-expenses-botton" onclick="addExpenses()">+ Add Expenses</button>
+        <button id="add-expenses-botton" onclick="addExpenses()">
+          + Add Expenses
+        </button>
       </section>
       <div class="recent-transactions">
         <p>Expenses Table</p>
@@ -142,7 +144,13 @@
               <td>Bus fare</td>
               <td>₱ 120</td>
               <td>
-                <button class="edit" id="edit-expenses-button" onclick="editExpenses()">Edit</button>
+                <button
+                  class="edit"
+                  id="edit-expenses-button"
+                  onclick="editExpenses()"
+                >
+                  Edit
+                </button>
                 <button class="delete">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -187,7 +195,11 @@
             </svg>
           </div>
           <hr />
-          <form action="includes/add_expenses.php" class="expenses-inputs" method="POST">
+          <form
+            action="includes/add_expenses.php"
+            class="expenses-inputs"
+            method="POST"
+          >
             <div class="inputs">
               <div class="category-input">
                 <label for="category">Category</label>
@@ -230,7 +242,9 @@
               </div>
             </div>
             <div class="buttons">
-              <button id="cancel" type="reset" onclick="cancelAddExpenses()">Cancel</button>
+              <button id="cancel" type="reset" onclick="cancelAddExpenses()">
+                Cancel
+              </button>
               <button id="save" type="submit">Save</button>
             </div>
           </form>
@@ -248,7 +262,7 @@
               stroke-width="1.5"
               stroke="currentColor"
               class="size-6"
-              id="close-btn-edit"  
+              id="close-btn-edit"
               onclick="closeEditExpenses()"
             >
               <path
@@ -259,7 +273,11 @@
             </svg>
           </div>
           <hr />
-          <form action="includes/add_expenses.php" class="expenses-inputs" method="POST">
+          <form
+            action="includes/add_expenses.php"
+            class="expenses-inputs"
+            method="POST"
+          >
             <div class="inputs">
               <div class="category-input">
                 <label for="category">Category</label>
@@ -302,7 +320,13 @@
               </div>
             </div>
             <div class="buttons">
-              <button id="cancel-edit" type="reset" onclick="cancelEditExpenses()">Cancel</button>
+              <button
+                id="cancel-edit"
+                type="reset"
+                onclick="cancelEditExpenses()"
+              >
+                Cancel
+              </button>
               <button id="save" type="submit">Save</button>
             </div>
           </form>
