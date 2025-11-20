@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login/login.html");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -32,7 +41,7 @@
       <div class="links">
         <ul class="link-items">
           <li class="link-item">
-            <a href="" id="dashboard-link">
+            <a href="home.php" id="dashboard-link">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -52,7 +61,7 @@
             </a>
           </li>
           <li class="link-item">
-            <a href="expenses.html">
+            <a href="expenses.php">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -72,7 +81,7 @@
             </a>
           </li>
           <li class="link-item">
-            <a href="budget.html">
+            <a href="budget.php">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -94,7 +103,7 @@
         </ul>
       </div>
       <div class="sidebar-logout">
-        <div class="logout-container">
+        <a class="logout-container" href="includes/logout.php">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -111,7 +120,7 @@
             />
           </svg>
           <label for="logout-icon"> Log out </label>
-        </div>
+        </a>
       </div>
     </aside>
 
@@ -163,7 +172,10 @@
                   
                   include '../iBadyetKon/includes/db_connect.php';
                         
-                  $sql = "SELECT * FROM expenses";
+                  $user_id = $_SESSION['user_id'];
+            
+
+                  $sql = "SELECT * FROM expenses WHERE user_id = '$user_id'";
                   $result = $conn->query($sql);
 
                   if (!$result) {
@@ -173,11 +185,7 @@
 
                   
                   while ($row = $result->fetch_assoc()) { 
-                    $exp_id = json_encode($row['expense_id']);
-                    $cat = json_encode($row['category']);
-                    $desc = json_encode($row['description']);
-                    $date = json_encode($row['date']);
-                    $amount = json_encode($row['amount']);
+                      
                     echo "<tr>
                       <td>$row[expense_id]</td>
                       <td>$row[date]</td>
@@ -334,7 +342,7 @@
             <div class="inputs">
               
               <div class="category-input">
-                <input type="hidden" id="edit-expense-id" name="expense_id">
+                <input type="hidden" id="edit-expense-id" name="expense_id" readonly>
                 <label for="edit-category">Category</label>
                 <input
                   type="text"
@@ -342,7 +350,7 @@
                   placeholder="Write your expense category here"
                   name="category"
                   required
-                  
+                  readonly
                 />
               </div>
 

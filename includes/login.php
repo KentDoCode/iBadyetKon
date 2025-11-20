@@ -14,8 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (password_verify($password, $user['password'])) {        
             $_SESSION['user_id'] = $user['id'];
-            $_SESSION['fname'] = $user['fname']; // 🔹 store first name
-            $_SESSION['lname'] = $user['lname']; // optional
+            $_SESSION['fname'] = $user['fname']; 
+            $_SESSION['lname'] = $user['lname']; 
 
             echo "<script>
                     alert('Login successful!');

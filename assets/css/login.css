@@ -188,6 +188,18 @@ body {
   background-color: rgb(0, 0, 142);
 }
 
+.password-input svg {
+  width: 25px;
+  position: absolute;
+  right: 0;
+  transform: translate(-82%, 153%);
+  color: black;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 500;
+}
+
+
 @media (max-width: 1024px) {
   .text > .logo {
     height: 185px;
@@ -231,3 +243,4 @@ body {
     align-items: center;
   }
 }
+

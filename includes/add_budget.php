@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     VALUES ('$user_id', '$category', '$amount', 0, '$amount', 'active')";
 
      if (mysqli_query($conn, $query)) {
-        echo "<script>alert('Budget added successfully!'); window.location.href='../home.html';</script>";
+        echo "<script>alert('Budget added successfully!'); window.location.href='../budget.php';</script>";
     } else {
         echo "<script>alert('Error adding expense: " . mysqli_error($conn) . "'); window.history.back();</script>";
     }

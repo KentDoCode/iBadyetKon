@@ -1,14 +1,24 @@
+<?php
+session_start();
+
+// If user is not logged in, redirect them
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login/login.html");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Expenses | iBadyetKon</title>
+    <title>Budget | iBadyetKon</title>
     <link rel="icon" href="assets/images/logos/logo-only.svg" />
-    <link rel="stylesheet" href="assets/css/navbar.css" />
-    <link rel="stylesheet" href="assets/css/sidebar.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="assets/css/expenses.css" />
+    <link rel="stylesheet" href="assets/css/sidebar.css" />
+    <link rel="stylesheet" href="assets/css/navbar.css" />
+    <link rel="stylesheet" href="assets/css/budget.css" />
     <link rel="stylesheet" href="assets/css/modal.css" />
   </head>
   <body>
@@ -53,7 +63,7 @@
             </a>
           </li>
           <li class="link-item">
-            <a href="expenses.html" id="expenses-link">
+            <a href="expenses.php" id="expenses-link">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -73,7 +83,7 @@
             </a>
           </li>
           <li class="link-item">
-            <a href="budget.html">
+            <a href="budget.php" id="budget-link">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -116,67 +126,72 @@
       </div>
     </aside>
 
+    <!-- Main -->
+
     <main class="main">
       <section class="page-name">
-        <h1>Expenses</h1>
-        <button id="add-expenses-botton" onclick="addExpenses()">
-          + Add Expenses
-        </button>
+        <div class="header-container">
+          <h1>Budget Overview</h1>
+          <p>Set and Track your spending limits per category.</p>
+        </div>
+        <button id="add-expenses-botton" onclick="addBudget()">+ Add Budget</button>
       </section>
       <div class="recent-transactions">
-        <p>Expenses Table</p>
+        <p>Budget Table</p>
         <table class="transaction-table">
           <thead>
             <tr>
               <th>#</th>
-              <th>Date</th>
               <th>Category</th>
               <th>Description</th>
-              <th>Amount</th>
+              <th>Budget (₱)</th>
+              <th>Spent (₱)</th>
+              <th>Remaining (₱)</th>
+              <th>Status/ Progress</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>0</td>
-              <td>Oct. 20, 2025</td>
-              <td>Transportation</td>
-              <td>Bus fare</td>
-              <td>₱ 120</td>
+
+            <?php
+            include '../iBadyetKon/includes/db_connect.php';
+
+            $user_id = $_SESSION['user_id'];
+
+            $sql = "SELECT * FROM budgets WHERE user_id = '$user_id'";
+            $result = $conn->query($sql);
+
+            if (!$result) {
+              die ("Query Failed" . $conn->error);
+            }
+
+            while ($row = $result->fetch_assoc()){
+              
+              echo "<tr>
+              <td>$row[budget_id]</td>
+              <td>$row[category]</td>
+              <td>$row[description]</td>
+              <td>$row[amount]</td>
+              <td>$row[spent]</td>
+              <td>$row[remaining]</td>
+              <td>$row[status]</td>
               <td>
-                <button
-                  class="edit"
-                  id="edit-expenses-button"
-                  onclick="editExpenses()"
-                >
-                  Edit
-                </button>
-                <button class="delete">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="size-6"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
-                    />
-                  </svg>
-                </button>
-              </td>
-            </tr>
+                    <button class='edit' id='edit-button-budget' onclick=\"openEditModalBudget('{$row['budget_id']}', '{$row['category']}', '{$row['description']}', '{$row['amount']}')\">Edit</button>
+              
+                  </td>         
+            </tr>";
+            }
+
+
+            ?>
+            
           </tbody>
         </table>
       </div>
-
       <section class="overlay-modal" id="overlay-modal">
         <div class="add-expenses-modal">
           <div class="name-close">
-            <p>Add Expenses</p>
+            <p>Add Budget</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -184,8 +199,8 @@
               stroke-width="1.5"
               stroke="currentColor"
               class="size-6"
-              id="close-btn-edit-expenses"
-              onclick="closeAddExpenses()"
+              id="close-btn"
+              onclick="closeAddBudget()"
             >
               <path
                 stroke-linecap="round"
@@ -195,11 +210,7 @@
             </svg>
           </div>
           <hr />
-          <form
-            action="includes/add_expenses.php"
-            class="expenses-inputs"
-            method="POST"
-          >
+          <form action="includes/add_budget.php" class="expenses-inputs" method="POST">
             <div class="inputs">
               <div class="category-input">
                 <label for="category">Category</label>
@@ -208,6 +219,7 @@
                   id="category"
                   placeholder="Write your expense category here"
                   name="category"
+                  required
                 />
               </div>
 
@@ -218,43 +230,35 @@
                   id="description-name"
                   name="description-name"
                   placeholder="Enter your description/ name here"
+                  required
                 />
               </div>
-
-              <div class="wrapper">
-                <div class="date-amount-wrapper">
-                  <div class="date-input">
-                    <label for="date">Date</label>
-                    <input type="date" name="date" id="date" />
-                  </div>
-
-                  <div class="amount-input">
-                    <label for="amount">Amount</label>
-                    <input
-                      type="number"
-                      name="amount"
-                      id="amount"
-                      placeholder="Enter amount here"
-                    />
-                  </div>
-                </div>
-                <p>Expenses will be added to Recent Transactions</p>
+              <div class="amount-input">
+                <label for="amount">Amount</label>
+                <input
+                  type="number"
+                  name="amount"
+                  id="amount"
+                  placeholder="Enter amount here"
+                  required
+                />
+                <p>Budget will be added to Budget Table</p>
               </div>
             </div>
             <div class="buttons">
-              <button id="cancel" type="reset" onclick="cancelAddExpenses()">
-                Cancel
-              </button>
+              <button id="cancel" type="reset" onclick="cancelAddBudget()">Cancel</button>
               <button id="save" type="submit">Save</button>
             </div>
           </form>
         </div>
       </section>
 
-      <section class="overlay-modal-edit" id="overlay-modal-edit">
-        <div class="edit-expenses-modal">
+      
+      <!-- Edit -->
+       <section class="overlay-modal-edit-budget" id="overlay-modal-edit">
+        <div class="add-expenses-modal">
           <div class="name-close">
-            <p>Edit Expenses</p>
+            <p>Edit Budget</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -262,8 +266,8 @@
               stroke-width="1.5"
               stroke="currentColor"
               class="size-6"
-              id="close-btn-edit"
-              onclick="closeEditExpenses()"
+              id="close-btn-edit-budget"
+              onclick="closeEditBudget()"
             >
               <path
                 stroke-linecap="round"
@@ -273,19 +277,17 @@
             </svg>
           </div>
           <hr />
-          <form
-            action="includes/add_expenses.php"
-            class="expenses-inputs"
-            method="POST"
-          >
+          <form action="includes/edit_budget.php" class="expenses-inputs" method="POST">
             <div class="inputs">
+              <input type="text" id="budget_id" name="budget-id" readonly>
               <div class="category-input">
                 <label for="category">Category</label>
                 <input
                   type="text"
-                  id="category"
+                  id="edit-category-budget"
                   placeholder="Write your expense category here"
                   name="category"
+                  readonly
                 />
               </div>
 
@@ -293,45 +295,30 @@
                 <label for="description-name">Description/ Name</label>
                 <input
                   type="text"
-                  id="description-name"
+                  id="edit-budget-description-name"
                   name="description-name"
                   placeholder="Enter your description/ name here"
                 />
               </div>
-
-              <div class="wrapper">
-                <div class="date-amount-wrapper">
-                  <div class="date-input">
-                    <label for="date">Date</label>
-                    <input type="date" name="date" id="date" />
-                  </div>
-
-                  <div class="amount-input">
-                    <label for="amount">Amount</label>
-                    <input
-                      type="number"
-                      name="amount"
-                      id="amount"
-                      placeholder="Enter amount here"
-                    />
-                  </div>
-                </div>
-                <p>Expenses will be added to Recent Transactions</p>
+              <div class="amount-input">
+                <label for="amount">Amount</label>
+                <input
+                  type="number"
+                  name="amount"
+                  id="edit-budget-amount"
+                  placeholder="Enter amount here"
+                />
+                <p>Budget will be updated to Budget Table</p>
               </div>
             </div>
             <div class="buttons">
-              <button
-                id="cancel-edit"
-                type="reset"
-                onclick="cancelEditExpenses()"
-              >
-                Cancel
-              </button>
+              <button id="cancel-edit-budget" type="reset" onclick="cancelEditBudget()">Cancel</button>
               <button id="save" type="submit">Save</button>
             </div>
           </form>
         </div>
       </section>
+
     </main>
     <footer class="footer">
       <p>
