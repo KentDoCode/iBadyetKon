@@ -86,12 +86,19 @@ body {
   padding: 25px 41px 25px 19px;
 }
 
+.sidebar-logout a:visited {
+  color: black;
+}
+
 .logout-container {
   padding: 10px 30px;
   display: flex;
   gap: 9px;
   border-radius: 10px;
   transition: background-color 0.3s;
+  text-decoration: none;
+  color: black;
+
 }
 
 .logout-container:hover {
@@ -105,4 +112,8 @@ body {
 
 .logout-container label:hover {
   cursor: pointer;
+}
+
+.logout-container:visited {
+  color: black;
 }

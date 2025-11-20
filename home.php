@@ -142,15 +142,37 @@ if (!isset($_SESSION['user_id'])) {
         <p>Summary cards</p>
         <section class="summary-cards">
           <div class="total-budget">
-            <p id="total-budget">₱ 10,000</p>
+
+            <?php
+            include 'includes/db_connect.php';
+
+            $user_id = $_SESSION['user_id'];
+
+
+            $budgetQuery = mysqli_query($conn,
+            "SELECT SUM(amount) AS total_budget FROM budgets WHERE user_id = '$user_id'");
+
+            $budgetData = mysqli_fetch_assoc($budgetQuery);
+            $total_budget = $budgetData['total_budget'] ?? 0;
+
+
+            $expenseQuery = mysqli_query($conn, "SELECT SUM(amount) AS total_expenses FROM expenses WHERE user_id = '$user_id'AND MONTH(date) = MONTH(CURRENT_DATE()) AND YEAR(date) = YEAR(CURRENT_DATE())");
+
+            $expenseData = mysqli_fetch_assoc($expenseQuery);
+            $total_expenses = $expenseData['total_expenses'] ?? 0;
+
+            
+            $remaining = $total_budget - $total_expenses;
+            ?>
+            <p id="total-budget">₱ <?php echo number_format($total_budget); ?></p>
             <p>Total Budget</p>
           </div>
           <div class="total-expenses">
-            <p id="total-expenses">₱ 4,250</p>
+            <p id="total-expenses">₱ <?php echo number_format($total_expenses); ?></p>
             <p>Total Expenses</p>
           </div>
           <div class="remaining">
-            <p id="remaining">₱ 5,750</p>
+            <p id="remaining">₱ <?php echo number_format($remaining); ?></p>
             <p>Remaining this month</p>
           </div>
           <div class="recent-transactions">
