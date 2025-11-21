@@ -105,12 +105,12 @@ if (!isset($_SESSION['user_id'])) {
         </ul>
       </div>
       <div class="sidebar-logout">
-        <div class="logout-container">
+        <a class="logout-container" href="includes/logout.php">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            stroke-width="1.5"
+            stroke-width="1.5"  
             stroke="currentColor"
             class="size-6"
             id="logout-icon"
@@ -122,7 +122,7 @@ if (!isset($_SESSION['user_id'])) {
             />
           </svg>
           <label for="logout-icon"> Log out </label>
-        </div>
+        </a>
       </div>
     </aside>
 

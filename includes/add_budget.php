@@ -13,8 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $description = $_POST['description-name'];
     $amount = $_POST['amount'];
 
-    $query = "INSERT INTO budgets (user_id, category, amount, spent, remaining, status) 
-    VALUES ('$user_id', '$category', '$amount', 0, '$amount', 'active')";
+    $query = "INSERT INTO budgets (user_id, category, description, amount, spent, remaining, status) 
+    VALUES ('$user_id', '$category', '$description', '$amount', 0, '$amount', 'active')";
 
      if (mysqli_query($conn, $query)) {
         echo "<script>alert('Budget added successfully!'); window.location.href='../budget.php';</script>";
